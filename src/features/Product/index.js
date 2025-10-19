@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export { default as AddForm } from "./AddForm";
 
@@ -8,16 +9,15 @@ function ProductBase({ className, item }) {
   let productImage = item.imageURL;
   try {
     productImage = require(`../../assets/${item.imageURL}`);
-  } catch (e) {
-  }
+  } catch (e) {}
 
   return (
     <li className={className}>
-      <a href={`/update-product/${item.id}`}>
+      <Link to={`/update-product/${item.id}`}>
         <img className="Products__image" src={productImage} alt={item.name} />
         <span className="Products__name">{item.name}</span>
         <small className="Products__type">{item.type}</small>
-      </a>
+      </Link>
     </li>
   );
 }
